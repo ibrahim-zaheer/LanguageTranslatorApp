@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- <div class="hero">
+    <h1>Translation Form</h1>
+</div> -->
+
+<div class="container form-container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post"> 
+                {% csrf_token %} 
+                <div class="form-group">
+                    <input type="text" class="form-control" name="translate" placeholder="Enter text to translate" required> 
+                </div>
+                <div class="form-group">
+                    <select class="form-control" required name="language"> 
+                        <option value="Hindi">Hindi</option> 
+                        <option value="Marathi">Marathi</option> 
+                        <option value="German">German</option> 
+                        <option value="French">French</option> 
+                        <option value="ur">Urdu</option> 
+                        <option value="ja">Japanese</option> 
+                        <option value="ko">Korean</option> 
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Translate</button> 
+            </form> 
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: white;
+}
+
+nav {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 35px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: .2em 2em;
+  float: right;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0;
+  padding: .2em .7em;
+}
+
+nav a {
+  width: 100%;
+  height: 100%;
+  color: white;
+  text-decoration: none;
+  font-family: Ubuntu;
+  font-size: 1.15em;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  transition: .25s ease-in-out;
+}
+
+nav a:hover {
+  color: rgb(220, 120, 0);
+}
+
+.nav-bg {
+  content: '';
+  position: absolute;
+  display: block;
+  top: -100%;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: rgb(50, 50, 50);
+  transition: .45s ease-in-out;
+}
+
+.bg-hidden {
+  top: -100%;
+  opacity: 0;
+}
+
+.bg-visible {
+  top: 0;
+  opacity: 1;
+}
+
+h1 {
+  text-align: center;
+  font-family: Ubuntu;
+  letter-spacing: 1px;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  background: rgb(50, 50, 50);
+  background: url(https://doninmass.files.wordpress.com/2013/04/walking-in-rain-painting-wallpaper-hd.jpg) no-repeat 50% 50% fixed;
+  background-size: 130%;
+  overflow: hidden;
+}
+
+.hero h1 {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  padding: .3em;
+  font-size: 3em;
+  font-weight: lighter;
+}
+
+.content-wrapper {
+  width: 80%;
+  height: 3000px;
+  padding: 1em 10%;
+}
+
+.content-wrapper h1 {
+  margin: 0;
+  color: rgb(220, 120, 0);
+}
+
+.content-wrapper p {
+  font-family: "Open Sans";
+  text-indent: 1.5em;
+}
+.form-container {
+    margin-top: 50px;
+}
+
+.form-container form {
+    background-color: #343a40;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.form-container input[type="text"],
+.form-container select {
+    margin-bottom: 20px;
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-bg"></div>
+        <ul>
+            <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">About</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
+        </ul>
+      </nav>
+      <div class="hero">
+        <h1>Translate any words you want</h1>
+      </div>
+      <div class="content-wrapper">
+       {% block content %}{% endblock content %}
+      </div>
+      <footer class="footer">
+        <div class="waves">
+          <div class="wave" id="wave1"></div>
+          <div class="wave" id="wave2"></div>
+          <div class="wave" id="wave3"></div>
+          <div class="wave" id="wave4"></div>
+        </div>
+        <ul class="social-icon">
+          <li class="social-icon__item"><a class="social-icon__link" href="#">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a></li>
+          <li class="social-icon__item"><a class="social-icon__link" href="#">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a></li>
+          <li class="social-icon__item"><a class="social-icon__link" href="#">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a></li>
+          <li class="social-icon__item"><a class="social-icon__link" href="#">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a></li>
+        </ul>
+        <ul class="menu">
+          <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">About</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Services</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Team</a></li>
+          <li class="menu__item"><a class="menu__link" href="#">Contact</a></li>
+    
+        </ul>
+        <p>&copy;2021 Nadine Coelho | All Rights Reserved</p>
+      </footer>
+</body>
+
+<script>
+    $(document).ready(function() {
+   $(window).on('scroll', function() {
+    if($(window).scrollTop() < 1000) {
+      $('.hero').css('background-size', 130 + parseInt($(window).scrollTop() / 5) + '%');
+      $('.hero h1').css('top', 50 + ($(window).scrollTop() * .1) + '%');
+      $('.hero h1').css('opacity', 1 - ($(window).scrollTop() * .003));
+    }
+     
+     if($(window).scrollTop() >= $('.content-wrapper').offset().top - 300) {
+       $('.nav-bg').removeClass('bg-hidden');
+       $('.nav-bg').addClass('bg-visible');
+     } else {
+       $('.nav-bg').removeClass('bg-visible');
+       $('.nav-bg').addClass('bg-hidden');
+     }
+  });
+});
+</script>
+</html>
